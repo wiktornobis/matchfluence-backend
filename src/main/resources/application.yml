@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: matchfluence-backend
+
+  datasource:
+    url: ${SPRING_DATASOURCE_URL}
+    username: ${POSTGRES_USER}
+    password: ${POSTGRES_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+
+  elasticsearch:
+    uris: ${SPRING_ELASTICSEARCH_URIS}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info

@@ -1,0 +1,7 @@
+namespace: matchfluence-test
+
+backend:
+  image: matchfluence-backend
+  tag: latest
+  imagePullPolicy: Never
+  replicas: 1

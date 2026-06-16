@@ -1,0 +1,7 @@
+namespace: matchfluence-prod
+
+backend:
+  image: your-registry/matchfluence-backend
+  tag: "1.0.0"
+  imagePullPolicy: IfNotPresent
+  replicas: 2

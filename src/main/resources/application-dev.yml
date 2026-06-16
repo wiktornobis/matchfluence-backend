@@ -1,0 +1,13 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+  liquibase:
+    enabled: false
+
+management:
+  endpoint:
+    health:
+      show-details: always
