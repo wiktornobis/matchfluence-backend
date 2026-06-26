@@ -1,1 +1,1 @@
-rootProject.name = "matchfluence-backend"
+rootProject.name = "wedly-backend"

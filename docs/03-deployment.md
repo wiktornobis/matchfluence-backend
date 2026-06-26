@@ -1,6 +1,6 @@
 # Deployment
 
-This document describes how to deploy, update, restart and remove Matchfluence environments.
+This document describes how to deploy, update, restart and remove Wedly environments.
 
 ---
 
@@ -60,32 +60,32 @@ If configuration has changed or a manual restart is required:
 
 ```bash
 kubectl rollout restart \
-deployment/matchfluence-backend \
--n matchfluence-dev
+deployment/wedly-backend \
+-n wedly-dev
 ```
 
 ## Test
 
 ```bash
 kubectl rollout restart \
-deployment/matchfluence-backend \
--n matchfluence-test
+deployment/wedly-backend \
+-n wedly-test
 ```
 
 ## Production
 
 ```bash
 kubectl rollout restart \
-deployment/matchfluence-backend \
--n matchfluence-prod
+deployment/wedly-backend \
+-n wedly-prod
 ```
 
 Check rollout status:
 
 ```bash
 kubectl rollout status \
-deployment/matchfluence-backend \
--n matchfluence-dev
+deployment/wedly-backend \
+-n wedly-dev
 ```
 
 ---
@@ -131,23 +131,23 @@ The undeploy script removes:
 Check Pods:
 
 ```bash
-kubectl get pods -n matchfluence-dev
+kubectl get pods -n wedly-dev
 ```
 
 Check Services:
 
 ```bash
-kubectl get svc -n matchfluence-dev
+kubectl get svc -n wedly-dev
 ```
 
 Check Deployments:
 
 ```bash
-kubectl get deployments -n matchfluence-dev
+kubectl get deployments -n wedly-dev
 ```
 
 Check Helm Release:
 
 ```bash
-helm list -n matchfluence-dev
+helm list -n wedly-dev
 ```

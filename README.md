@@ -1,6 +1,6 @@
-# Matchfluence Backend
+# Wedly Backend
 
-Backend service for Matchfluence platform.
+Backend service for Wedly platform.
 
 ---
 
@@ -72,7 +72,7 @@ The deployment script automatically:
 kubectl port-forward \
 svc/backend-service \
 8080:8080 \
--n matchfluence-dev
+-n wedly-dev
 ```
 
 Open:

@@ -1,6 +1,6 @@
 # Troubleshooting
 
-This document contains useful commands for debugging and monitoring the local Matchfluence Kubernetes environment.
+This document contains useful commands for debugging and monitoring the local Wedly Kubernetes environment.
 
 ---
 
@@ -19,19 +19,19 @@ kubectl get namespaces
 Development:
 
 ```bash
-kubectl get pods -n matchfluence-dev
+kubectl get pods -n wedly-dev
 ```
 
 Test:
 
 ```bash
-kubectl get pods -n matchfluence-test
+kubectl get pods -n wedly-test
 ```
 
 Production:
 
 ```bash
-kubectl get pods -n matchfluence-prod
+kubectl get pods -n wedly-prod
 ```
 
 ---
@@ -39,7 +39,7 @@ kubectl get pods -n matchfluence-prod
 ## Check Deployments
 
 ```bash
-kubectl get deployments -n matchfluence-dev
+kubectl get deployments -n wedly-dev
 ```
 
 ---
@@ -47,7 +47,7 @@ kubectl get deployments -n matchfluence-dev
 ## Check Services
 
 ```bash
-kubectl get svc -n matchfluence-dev
+kubectl get svc -n wedly-dev
 ```
 
 ---
@@ -55,7 +55,7 @@ kubectl get svc -n matchfluence-dev
 ## Check Helm Release
 
 ```bash
-helm list -n matchfluence-dev
+helm list -n wedly-dev
 ```
 
 ---
@@ -66,8 +66,8 @@ Follow backend logs:
 
 ```bash
 kubectl logs -f \
-deployment/matchfluence-backend \
--n matchfluence-dev
+deployment/wedly-backend \
+-n wedly-dev
 ```
 
 ---
@@ -77,7 +77,7 @@ deployment/matchfluence-backend \
 ```bash
 kubectl logs -f \
 deployment/postgres-db \
--n matchfluence-dev
+-n wedly-dev
 ```
 
 ---
@@ -87,7 +87,7 @@ deployment/postgres-db \
 ```bash
 kubectl logs -f \
 deployment/elasticsearch \
--n matchfluence-dev
+-n wedly-dev
 ```
 
 ---
@@ -101,14 +101,14 @@ Useful when a Pod is not starting.
 List Pods:
 
 ```bash
-kubectl get pods -n matchfluence-dev
+kubectl get pods -n wedly-dev
 ```
 
 Describe Pod:
 
 ```bash
 kubectl describe pod POD_NAME \
--n matchfluence-dev
+-n wedly-dev
 ```
 
 ---
@@ -117,7 +117,7 @@ kubectl describe pod POD_NAME \
 
 ```bash
 kubectl get events \
--n matchfluence-dev
+-n wedly-dev
 ```
 
 Sort by creation time:
@@ -125,7 +125,7 @@ Sort by creation time:
 ```bash
 kubectl get events \
 --sort-by=.metadata.creationTimestamp \
--n matchfluence-dev
+-n wedly-dev
 ```
 
 ---
@@ -136,8 +136,8 @@ Backend:
 
 ```bash
 kubectl rollout status \
-deployment/matchfluence-backend \
--n matchfluence-dev
+deployment/wedly-backend \
+-n wedly-dev
 ```
 
 PostgreSQL:
@@ -145,7 +145,7 @@ PostgreSQL:
 ```bash
 kubectl rollout status \
 deployment/postgres-db \
--n matchfluence-dev
+-n wedly-dev
 ```
 
 Elasticsearch:
@@ -153,7 +153,7 @@ Elasticsearch:
 ```bash
 kubectl rollout status \
 deployment/elasticsearch \
--n matchfluence-dev
+-n wedly-dev
 ```
 
 ---
@@ -166,7 +166,7 @@ deployment/elasticsearch \
 kubectl port-forward \
 svc/backend-service \
 8080:8080 \
--n matchfluence-dev
+-n wedly-dev
 ```
 
 Health endpoint:
@@ -183,7 +183,7 @@ http://localhost:8080/actuator/health
 kubectl port-forward \
 svc/postgres-service \
 5432:5432 \
--n matchfluence-dev
+-n wedly-dev
 ```
 
 ---
@@ -194,7 +194,7 @@ svc/postgres-service \
 kubectl port-forward \
 svc/elasticsearch-service \
 9200:9200 \
--n matchfluence-dev
+-n wedly-dev
 ```
 
 ---
@@ -250,7 +250,7 @@ docker images
 ## Check Everything
 
 ```bash
-kubectl get all -n matchfluence-dev
+kubectl get all -n wedly-dev
 ```
 
 ---
@@ -258,7 +258,7 @@ kubectl get all -n matchfluence-dev
 ## Check Persistent Volume Claims
 
 ```bash
-kubectl get pvc -n matchfluence-dev
+kubectl get pvc -n wedly-dev
 ```
 
 ---
@@ -266,7 +266,7 @@ kubectl get pvc -n matchfluence-dev
 ## Check ConfigMaps
 
 ```bash
-kubectl get configmaps -n matchfluence-dev
+kubectl get configmaps -n wedly-dev
 ```
 
 ---
@@ -274,7 +274,7 @@ kubectl get configmaps -n matchfluence-dev
 ## Check Secrets
 
 ```bash
-kubectl get secrets -n matchfluence-dev
+kubectl get secrets -n wedly-dev
 ```
 
 ---
@@ -288,22 +288,22 @@ Check:
 1. Pod status
 
 ```bash
-kubectl get pods -n matchfluence-dev
+kubectl get pods -n wedly-dev
 ```
 
 2. Pod description
 
 ```bash
 kubectl describe pod POD_NAME \
--n matchfluence-dev
+-n wedly-dev
 ```
 
 3. Backend logs
 
 ```bash
 kubectl logs -f \
-deployment/matchfluence-backend \
--n matchfluence-dev
+deployment/wedly-backend \
+-n wedly-dev
 ```
 
 ---
@@ -318,13 +318,13 @@ Check:
 * ConfigMap
 
 ```bash
-kubectl get pods -n matchfluence-dev
+kubectl get pods -n wedly-dev
 
-kubectl get svc -n matchfluence-dev
+kubectl get svc -n wedly-dev
 
-kubectl get secrets -n matchfluence-dev
+kubectl get secrets -n wedly-dev
 
-kubectl get configmaps -n matchfluence-dev
+kubectl get configmaps -n wedly-dev
 ```
 
 ---
@@ -334,11 +334,11 @@ kubectl get configmaps -n matchfluence-dev
 Check:
 
 ```bash
-kubectl get pods -n matchfluence-dev
+kubectl get pods -n wedly-dev
 
 kubectl logs -f \
 deployment/elasticsearch \
--n matchfluence-dev
+-n wedly-dev
 ```
 
 ---
@@ -348,11 +348,11 @@ deployment/elasticsearch \
 Check:
 
 ```bash
-helm list -n matchfluence-dev
+helm list -n wedly-dev
 
 kubectl get events \
--n matchfluence-dev
+-n wedly-dev
 
 kubectl get all \
--n matchfluence-dev
+-n wedly-dev
 ```

@@ -1,6 +1,6 @@
 # Kubernetes
 
-This document describes the Kubernetes architecture used for local development and deployment of Matchfluence Backend.
+This document describes the Kubernetes architecture used for local development and deployment of Wedly Backend.
 
 ---
 
@@ -54,9 +54,9 @@ Each environment has its own Kubernetes namespace.
 
 | Environment | Namespace         |
 | ----------- | ----------------- |
-| Development | matchfluence-dev  |
-| Test        | matchfluence-test |
-| Production  | matchfluence-prod |
+| Development | wedly-dev  |
+| Test        | wedly-test |
+| Production  | wedly-prod |
 
 Deploy environment:
 
@@ -135,7 +135,7 @@ Helm is used to manage Kubernetes resources.
 The Helm Chart is located in:
 
 ```
-k8s/helm/matchfluence-backend
+k8s/helm/wedly-backend
 ```
 
 Helm manages:
@@ -169,7 +169,7 @@ The deployment script automatically:
 Docker image:
 
 ```
-matchfluence-backend:latest
+wedly-backend:latest
 ```
 
 ---
@@ -183,11 +183,11 @@ Provides isolation between environments.
 Examples:
 
 ```
-matchfluence-dev
+wedly-dev
 
-matchfluence-test
+wedly-test
 
-matchfluence-prod
+wedly-prod
 ```
 
 ---
@@ -277,7 +277,7 @@ This prevents data loss after Pod restarts.
 Check PVCs:
 
 ```bash
-kubectl get pvc -n matchfluence-dev
+kubectl get pvc -n wedly-dev
 ```
 
 ---
@@ -290,7 +290,7 @@ kubectl get pvc -n matchfluence-dev
 kubectl port-forward \
 svc/backend-service \
 8080:8080 \
--n matchfluence-dev
+-n wedly-dev
 ```
 
 Open:
@@ -307,7 +307,7 @@ http://localhost:8080
 kubectl port-forward \
 svc/postgres-service \
 5432:5432 \
--n matchfluence-dev
+-n wedly-dev
 ```
 
 ---
@@ -318,7 +318,7 @@ svc/postgres-service \
 kubectl port-forward \
 svc/elasticsearch-service \
 9200:9200 \
--n matchfluence-dev
+-n wedly-dev
 ```
 
 ---
@@ -372,25 +372,25 @@ Verify Deployment
 Check Pods:
 
 ```bash
-kubectl get pods -n matchfluence-dev
+kubectl get pods -n wedly-dev
 ```
 
 Check Services:
 
 ```bash
-kubectl get svc -n matchfluence-dev
+kubectl get svc -n wedly-dev
 ```
 
 Check Deployments:
 
 ```bash
-kubectl get deployments -n matchfluence-dev
+kubectl get deployments -n wedly-dev
 ```
 
 Check Helm Release:
 
 ```bash
-helm list -n matchfluence-dev
+helm list -n wedly-dev
 ```
 
 ---

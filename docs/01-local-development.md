@@ -15,9 +15,9 @@ minikube start
 ## Verify
 
 ```bash
-kubectl get pods -n matchfluence-dev
+kubectl get pods -n wedly-dev
 
-kubectl get svc -n matchfluence-dev
+kubectl get svc -n wedly-dev
 ```
 
 ## Backend
@@ -26,7 +26,7 @@ kubectl get svc -n matchfluence-dev
 kubectl port-forward \
 svc/backend-service \
 8080:8080 \
--n matchfluence-dev
+-n wedly-dev
 ```
 
 ## PostgreSQL
@@ -35,7 +35,7 @@ svc/backend-service \
 kubectl port-forward \
 svc/postgres-service \
 5432:5432 \
--n matchfluence-dev
+-n wedly-dev
 ```
 
 ## Elasticsearch
@@ -44,5 +44,5 @@ svc/postgres-service \
 kubectl port-forward \
 svc/elasticsearch-service \
 9200:9200 \
--n matchfluence-dev
+-n wedly-dev
 ```

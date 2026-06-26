@@ -9,8 +9,8 @@ if [ -z "$ENVIRONMENT" ]; then
   exit 1
 fi
 
-NAMESPACE="matchfluence-$ENVIRONMENT"
-RELEASE_NAME="matchfluence-backend"
+NAMESPACE="wedly-$ENVIRONMENT"
+RELEASE_NAME="wedly-backend"
 
 echo "Removing Helm release..."
 helm uninstall "$RELEASE_NAME" -n "$NAMESPACE" || true

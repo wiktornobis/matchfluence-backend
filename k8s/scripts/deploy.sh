@@ -13,13 +13,13 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 K8S_DIR="$(dirname "$SCRIPT_DIR")"
 PROJECT_DIR="$(dirname "$K8S_DIR")"
 
-NAMESPACE="matchfluence-$ENVIRONMENT"
-RELEASE_NAME="matchfluence-backend"
+NAMESPACE="wedly-$ENVIRONMENT"
+RELEASE_NAME="wedly-backend"
 
 CONFIG_FILE="$K8S_DIR/env/config-$ENVIRONMENT.env"
 SECRET_FILE="$K8S_DIR/env/secret-$ENVIRONMENT.env"
-VALUES_FILE="$K8S_DIR/helm/matchfluence-backend/values-$ENVIRONMENT.yaml"
-CHART_DIR="$K8S_DIR/helm/matchfluence-backend"
+VALUES_FILE="$K8S_DIR/helm/wedly-backend/values-$ENVIRONMENT.yaml"
+CHART_DIR="$K8S_DIR/helm/wedly-backend"
 
 if [ ! -f "$CONFIG_FILE" ]; then
   echo "Missing config file: $CONFIG_FILE"
@@ -41,20 +41,20 @@ echo "Namespace:   $NAMESPACE"
 
 echo "Building Docker image in Minikube Docker..."
 eval "$(minikube docker-env)"
-docker build -t matchfluence-backend:latest "$PROJECT_DIR"
+docker build -t wedly-backend:latest "$PROJECT_DIR"
 
 echo "Creating namespace..."
 kubectl create namespace "$NAMESPACE" \
   --dry-run=client -o yaml | kubectl apply -f -
 
 echo "Applying ConfigMap..."
-kubectl create configmap matchfluence-config \
+kubectl create configmap wedly-config \
   --from-env-file="$CONFIG_FILE" \
   -n "$NAMESPACE" \
   --dry-run=client -o yaml | kubectl apply -f -
 
 echo "Applying Secret..."
-kubectl create secret generic matchfluence-secret \
+kubectl create secret generic wedly-secret \
   --from-env-file="$SECRET_FILE" \
   -n "$NAMESPACE" \
   --dry-run=client -o yaml | kubectl apply -f -
@@ -65,7 +65,7 @@ helm upgrade --install "$RELEASE_NAME" "$CHART_DIR" \
   -n "$NAMESPACE"
 
 echo "Restarting backend..."
-kubectl rollout restart deployment/matchfluence-backend -n "$NAMESPACE" || true
+kubectl rollout restart deployment/wedly-backend -n "$NAMESPACE" || true
 
 echo "Done."
 kubectl get pods -n "$NAMESPACE"

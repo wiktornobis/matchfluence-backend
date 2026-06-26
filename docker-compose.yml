@@ -1,7 +1,7 @@
 services:
   postgres:
     image: postgres:16-alpine
-    container_name: matchfluence-postgres
+    container_name: wedly-postgres
     env_file:
       - env-dev
     environment:
@@ -15,7 +15,7 @@ services:
 
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:8.17.0
-    container_name: matchfluence-elasticsearch
+    container_name: wedly-elasticsearch
     environment:
       discovery.type: single-node
       xpack.security.enabled: "false"
@@ -27,7 +27,7 @@ services:
 
   backend:
     build: .
-    container_name: matchfluence-backend
+    container_name: wedly-backend
     env_file:
       - env-dev
     depends_on:
